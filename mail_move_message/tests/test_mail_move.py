@@ -18,7 +18,7 @@ class TestUi(odoo.tests.HttpCase):
         env['ir.module.module'].search([('name', '=', 'mail_move_message')], limit=1).state = 'installed'
         self.registry.cursor().release()
 
-        # updating odels, to be able relocate messages to a partner at_install
+        # updating models, to be able relocate messages to a partner at_install
         config_parameters = self.env["ir.config_parameter"].sudo()
         config_parameters.set_param("mail_relocation_models", "crm.lead,project.task,res.partner")
 
