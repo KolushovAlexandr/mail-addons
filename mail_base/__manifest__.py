@@ -3,7 +3,7 @@
     "summary": """Makes Mail extendable""",
     "category": "Discuss",
     "images": [],
-    "version": "11.0.1.0.2",
+    "version": "12.0.1.0.2",
 
     "author": "IT-Projects LLC, Pavel Romanchenko",
     "support": "apps@it-projects.info",
@@ -20,5 +20,5 @@
     "data": [
         "views/templates.xml",
     ],
-    'installable': False,
+    'installable': True,
 }
