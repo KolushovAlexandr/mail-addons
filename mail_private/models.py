@@ -4,13 +4,13 @@ from odoo import models, fields, api
 class MailComposeMessage(models.TransientModel):
     _inherit = 'mail.compose.message'
 
-    is_private = fields.Boolean(string='Send Internal Message')
+    is_private = fields.Boolean(string='Send internal message')
 
 
 class MailMessage(models.Model):
     _inherit = 'mail.message'
 
-    is_private = fields.Boolean(string='Send Internal Message')
+    is_private = fields.Boolean(string='Send internal message')
 
     def send_recepients_for_internal_message(self, model, domain):
         result = []
@@ -41,15 +41,15 @@ class MailMessage(models.Model):
         return result
 
     @api.multi
-    def _notify(self, force_send=False, send_after_commit=True, user_signature=True):
+    def _notify(self, record, msg_vals, force_send=False, send_after_commit=True, model_description=False, mail_auto_delete=True):
         self_sudo = self.sudo()
         if not self_sudo.is_private:
-            super(MailMessage, self)._notify(force_send, send_after_commit, user_signature)
+            super(MailMessage, self)._notify(record, msg_vals, force_send, send_after_commit, model_description, mail_auto_delete)
         else:
-            self._notify_mail_private(force_send, send_after_commit, user_signature)
+            self._notify_mail_private(record, msg_vals, force_send, send_after_commit, model_description, mail_auto_delete)
 
     @api.multi
-    def _notify_mail_private(self, force_send=False, send_after_commit=True, user_signature=True):
+    def _notify_mail_private(self, record, msg_vals, force_send=False, send_after_commit=True, model_description=False, mail_auto_delete=True):
         """ Compute recipients to notify based on specified recipients and document
         followers. Delegate notification to partners to send emails and bus notifications
         and to channels to broadcast messages on channels """
