@@ -9,7 +9,6 @@ odoo.define('mail_private', function (require) {
 var core = require('web.core');
 var Chatter = require('mail.Chatter');
 var ChatterComposer = require('mail.composer.Chatter');
-/* var chat_manager = require('mail_base.base').chat_manager;*/
 var session = require('web.session');
 
 var rpc = require('web.rpc');
@@ -131,7 +130,7 @@ ChatterComposer.include({
             }
 
             if (self.options.is_private) {
-                message.is_private = true;
+                message.context.is_private = true;
                 message.channel_ids = self.get_checked_channel_ids();
             }
 

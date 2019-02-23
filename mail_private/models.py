@@ -43,7 +43,7 @@ class MailMessage(models.Model):
     @api.multi
     def _notify(self, record, msg_vals, force_send=False, send_after_commit=True, model_description=False, mail_auto_delete=True):
         self_sudo = self.sudo()
-        if not self_sudo.is_private:
+        if not self_sudo._context['is_private']:
             super(MailMessage, self)._notify(record, msg_vals, force_send, send_after_commit, model_description, mail_auto_delete)
         else:
             self._notify_mail_private(record, msg_vals, force_send, send_after_commit, model_description, mail_auto_delete)
