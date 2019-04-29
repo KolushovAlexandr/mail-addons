@@ -214,10 +214,11 @@ class Wizard(models.TransientModel):
 
         if r.model in ['mail.message', 'mail.channel', False]:
             return {
-                'name': 'Chess game page',
+                'name': 'Inbox',
                 'type': 'ir.actions.act_url',
                 'url': '/web',
                 'target': 'self',
+                'tag': 'reload',
             }
         return {
             'name': _('Record'),
@@ -227,6 +228,7 @@ class Wizard(models.TransientModel):
             'res_id': r.res_id,
             'views': [(False, 'form')],
             'type': 'ir.actions.act_window',
+            'tag': 'reload',
         }
 
     @api.multi
